@@ -1,14 +1,16 @@
 global.DEBUG = true;
-const dal = require('./pdb');
+const dal = require('./pdb.js');
 
 var getActors = function () {
     if(DEBUG) console.log('Getting actors');
     return new Promise(function (resolve, reject) {
+
         const sql = "SELECT actor_id, first_name, last_name FROM actor \
         ORDER BY actor_id DESC LIMIT 10;";
+
         dal.query(sql, [], (err, result) => {
             if (err) {
-                if(DEBUG) console.log('Error getting actors');
+                if(DEBUG) console.log(err);
                 reject(err);
             } else {
                 if(DEBUG) console.log('Got actors');
@@ -17,7 +19,7 @@ var getActors = function () {
             }
         });
     });
-}
+};
 
 module.exports = {
     getActors,

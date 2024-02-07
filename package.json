@@ -1,10 +1,4 @@
 {
-  "dependencies": {
-    "date-fns": "^3.3.1",
-    "node": "^21.6.1",
-    "pg": "^8.11.3",
-    "uuid": "^9.0.1"
-  },
   "name": "introtodal",
   "description": "",
   "version": "1.0.0",
@@ -14,5 +8,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^3.3.1",
+    "node": "^21.6.1",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  }
 }
