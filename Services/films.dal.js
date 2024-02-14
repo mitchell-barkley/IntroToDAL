@@ -5,12 +5,28 @@ var getAllActorsInAllFilms = function () {
     if(DEBUG) console.log('Getting all actors in all films');
     return new Promise(function (resolve, reject) {
 
-        const sql = "SELECT film_id, title, first_name, last_name FROM film \
+        const sql1 = `SELECT actor.first_name,
+        actor.last_name,
+        actor.last_name,
+        film.release_year,
+        film.title
+        film.rating
+        FROM film
+        JOIN film_actor
+        USING (film_id)
+        JOIN actor
+        USING (actor_id)
+        ORDER BY actor.last_name, ASC LIMIT 25;`;
+
+        const sql2 = "SELECT film_id, title, first_name, last_name FROM film \
         JOIN film_actor USING (film_id) \
         JOIN actor USING (actor_id) \
         ORDER BY film_id, first_name, last_name;";
 
-        dal.query(sql, [], (err, result) => {
+        const sql3 = `SELECT * FROM film_actor
+        ORDER BY last_name ASC LIMIT 25;`;
+
+        dal.query(sql2, [], (err, result) => {
             if (err) {
                 if(DEBUG) console.log('Error getting actors');
                 reject(err);
