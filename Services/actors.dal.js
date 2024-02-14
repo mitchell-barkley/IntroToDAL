@@ -6,7 +6,7 @@ var getActors = function () {
     return new Promise(function (resolve, reject) {
 
         const sql = "SELECT actor_id, first_name, last_name FROM actor \
-        ORDER BY actor_id DESC LIMIT 10;";
+        ORDER BY actor_id DESC;";
 
         dal.query(sql, [], (err, result) => {
             if (err) {
