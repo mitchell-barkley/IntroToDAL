@@ -3,7 +3,7 @@ const app = express();
 const {getActors, getActorById} = require('./Services/actors.dal.js');
 const { get } = require('http');
 
-const PORT = 3000;
+const PORT = 4000;
 global.DEBUG = true;
 
 // app.get();
@@ -28,6 +28,15 @@ app.get('/page', (req, res) => {
     console.log('Render a webpage at route /page.');
     res.render('page.ejs');
 
+});
+
+app.get('/actors', async (req, res) => {
+    console.log('Request received for actors page.');
+    let actors = await getActors();
+    res.writeHead(200, 'Content-Type', 'application/json');
+    res.write(JSON.stringify(actors));
+    res.end();
+    // res.send('Actors page');
 });
 
 app.get('/actors/:id', async (req, res) => {
