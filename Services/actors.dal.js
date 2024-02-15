@@ -1,4 +1,4 @@
-global.DEBUG = true;
+global.DEBUG = false;
 const dal = require('./pdb.js');
 
 var getActors = function () {
