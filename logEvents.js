@@ -6,7 +6,7 @@ const { v4: uuid } = require("uuid");
 
 const EventEmitter = require("events");
 class MyEmitter extends EventEmitter {}
-const myEmitter = new EventEmitter();
+const myEmitter = new MyEmitter();
 
 myEmitter.on("route", (url) => {
     const d = new Date();

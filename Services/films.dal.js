@@ -62,4 +62,5 @@ var getFilmById = function (id) {
 
 module.exports = {
     getAllActorsInAllFilms,
+    getFilmById
 }

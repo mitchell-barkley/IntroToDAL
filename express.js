@@ -49,6 +49,11 @@ app.get('/actors/:id', async (req, res) => {
     // getActorById(req.params.id)
 });
 
+app.use((req, res) => {
+    console.log('404 - Page not found');
+    res.status(404).send('404 - Page not found');
+    res.end();
+});
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
