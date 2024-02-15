@@ -1,4 +1,4 @@
-global.DEBUG = true;
+global.DEBUG = false;
 const dal = require('./pdb.js');
 
 var getAllActorsInAllFilms = function () {
@@ -39,6 +39,27 @@ var getAllActorsInAllFilms = function () {
     });
 }
 
+var getFilms = function () {
+    if(DEBUG) console.log('Getting films');
+    return new Promise(function (resolve, reject) {
+
+        const sql = "SELECT film_id, title, release_year FROM film \
+        ORDER BY film_id DESC;";
+
+        dal.query(sql, [], (err, result) => {
+            if (err) {
+                if(DEBUG) console.log('Error getting films');
+                reject(err);
+            } else {
+                if(DEBUG) console.log('Got films');
+                if(DEBUG) console.log(result.rows);
+                resolve(result.rows);
+            }
+        });
+    });
+
+}
+
 var getFilmById = function (id) {
     if(DEBUG) console.log('Getting film');
     return new Promise(function (resolve, reject) {
@@ -62,5 +83,6 @@ var getFilmById = function (id) {
 
 module.exports = {
     getAllActorsInAllFilms,
-    getFilmById
+    getFilmById,
+    getFilms
 }

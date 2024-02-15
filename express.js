@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const {getActors, getActorById} = require('./Services/actors.dal.js');
+const {getFilms, getFilmById} = require('./Services/films.dal.js');
 const { get } = require('http');
 
 const PORT = 4000;
-global.DEBUG = true;
+global.DEBUG = false;
 
 // app.get();
 // app.post();
@@ -47,6 +48,25 @@ app.get('/actors/:id', async (req, res) => {
     res.write(JSON.stringify(actor));
     res.end();
     // getActorById(req.params.id)
+});
+
+app.get('/films', async (req, res) => {
+    console.log('Request received for films page.');
+    let films = await getFilms();
+    res.writeHead(200, 'Content-Type', 'application/json');
+    res.write(JSON.stringify(films));
+    res.end();
+    // res.send('Films page');
+});
+
+app.get('/films/:id', async (req, res) => {
+    console.log('Request received for films page.');
+    // res.send(`Film ID: ${req.params.id}`);
+    let film = await getFilmById(req.params.id);
+    res.writeHead(200, 'Content-Type', 'application/json');
+    res.write(JSON.stringify(film));
+    res.end();
+    // getFilmById(req.params.id)
 });
 
 app.use((req, res) => {
